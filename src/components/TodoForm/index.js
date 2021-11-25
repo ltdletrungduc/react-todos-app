@@ -17,6 +17,7 @@ function TodoForm({ addHandler }) {
 					type='text'
 					value={value}
 					onChange={(e) => setValue(e.target.value)}
+					placeholder='Hmm... I need to do'
 				/>
 			</Styled.Form>
 		</Styled.Container>

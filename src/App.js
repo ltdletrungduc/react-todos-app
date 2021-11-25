@@ -4,29 +4,16 @@ import { TodoItem, TodoForm } from "./components";
 import "normalize.css";
 import "./App.css";
 function App() {
-	const [todos, setTodos] = useState([
-		{
-			text: "Learn about React",
-			isCompleted: false,
-		},
-		{
-			text: "Meet friend for lunch",
-			isCompleted: false,
-		},
-		{
-			text: "Build really cool todo app",
-			isCompleted: false,
-		},
-	]);
+	const [todos, setTodos] = useState([]);
 
 	const addTodo = (text) => {
 		const newTodos = [...todos, { text }];
 		setTodos(newTodos);
 	};
 
-	const completeTodo = (index) => {
+	const toggleTodo = (index) => {
 		const newTodos = [...todos];
-		newTodos[index].isCompleted = true;
+		newTodos[index].isCompleted = !newTodos[index].isCompleted;
 		setTodos(newTodos);
 	};
 
@@ -40,19 +27,18 @@ function App() {
 		<div className='app'>
 			<h1 className='title'>TO-DO LIST</h1>
 			<div className='todo-list'>
+				<TodoForm addHandler={addTodo} />
 				{todos.map((todo, index) => {
 					return (
 						<TodoItem
 							key={index}
 							index={index}
 							todo={todo}
-							completeTodo={completeTodo}
+							toggleTodo={toggleTodo}
 							removeTodo={removeTodo}
 						/>
 					);
 				})}
-
-				<TodoForm addHandler={addTodo} />
 			</div>
 		</div>
 	);
